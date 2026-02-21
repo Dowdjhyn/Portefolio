@@ -321,7 +321,7 @@
       letter-spacing: 3px;
     }
 
-    .engine-name.unreal { color: #0080ff; text-shadow: 0 0 20px rgba(0,128,255,0.3); }
+    .engine-name.unreal { color: #e8ff47  ; text-shadow: 0 0 20px rgba(0,128,255,0.3); }
     .engine-name.unity  { color: #e8ff47; text-shadow: 0 0 20px rgba(232,255,71,0.3); }
 
     .engine-count {
@@ -340,8 +340,10 @@
       margin-bottom: 1.2rem;
       position: relative;
       overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.6);
       transition: border-color 0.3s, transform 0.3s;
-      cursor: none;
+      cursor: pointer;
     }
 
     .engine-column .project-card:last-child {
@@ -473,7 +475,7 @@
     <div class="nav-links">
       <a href="#about">About me</a>
       <a href="#featured">Phare Project</a>
-      <a href="#projects">My Projects</a>
+      <a href="#projects">All my Projects</a>
     </div>
   </nav>
 
@@ -490,7 +492,7 @@
         Passionné par ce qui rend un jeu <em>inoubliable</em>.
       </p>
       <a href="#featured" class="hero-cta">Phare Project →</a>
-      <a href="#projects" class="hero-cta">My Projects→</a>
+      <a href="#projects" class="hero-cta">All my Projects→</a>
     </div>
   </section>
 
@@ -502,22 +504,22 @@
     <div class="featured-card reveal">
       <div class="featured-visual">
         <span class="featured-icon">🎮</span>
-        <div class="featured-badge">Projet phare</div>
+        <div class="featured-badge">Project phare</div>
       </div>
       <div class="featured-info">
-        <p class="featured-genre">Action-RPG/Souls Like</p>
+        <p class="featured-genre">Action-RPG / Souls Like</p>
         <h3 class="featured-title">Claymore</h3>
         <p class="featured-desc">
           Décris ici ton projet phare en 2–3 phrases. Qu'est-ce qui le rend unique ?
           Quel problème de game design as-tu résolu ? Quelle expérience voulais-tu créer pour le joueur ?
         </p>
         <div class="tags">
-          <span class="tag">Unreal Engine 5.6.1</span>
-          <span class="tag">Code Nodal</span>
-          <span class="tag">Système d'animation</span>
-          <span class="tag">Arbre de comportement</span>
+          <span class="tag">Unreal Engine 5</span>
+          <span class="tag">Nodal Code</span>
+          <span class="tag">Complete Animation System</span>
+          <span class="tag">Behavior Tree</span>
         </div>
-        <a href="#" class="btn-outline">Voir le projet</a>
+        <a href="#" class="btn-outline">Explore</a>
       </div>
     </div>
   </section>
@@ -532,9 +534,9 @@
       <!-- ═══ UNREAL ENGINE ═══ -->
       <div class="engine-column unreal-col">
         <div class="engine-header">
-          <span class="engine-logo">🎮</span>
+
           <span class="engine-name unreal">Unreal Engine</span>
-          <span class="engine-count">2 projets</span>
+          <span class="engine-count">2 projects</span>
         </div>
 
         <!-- Projet UE 01 -->
@@ -544,8 +546,14 @@
           <p class="card-genre">Top View Beat Them'Up</p>
           <h3 class="card-title">Unjudged</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div class="tags">
-            <span class="tag">Unreal Engine 5</span>
+          <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; border-left: 2px solid rgba(232,255,71,0.3);">
+            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+            <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> C++</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Blueprint</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Combat Mechanics</li>
+            </ul>
           </div>
         </div>
 
@@ -556,8 +564,14 @@
           <p class="card-genre">Level Design</p>
           <h3 class="card-title">Fallout World</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div class="tags">
-            <span class="tag">Unreal Engine 5</span>
+          <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; border-left: 2px solid rgba(232,255,71,0.3);">
+            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+            <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Level Design</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Environmental Design</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Lighting</li>
+            </ul>
           </div>
         </div>
 
@@ -566,14 +580,12 @@
       <!-- ═══ UNITY ═══ -->
       <div class="engine-column unity-col">
         <div class="engine-header">
-          <span class="engine-logo">⚙️</span>
           <span class="engine-name unity">Unity</span>
-          <span class="engine-count">2 projets</span>
+          <span class="engine-count">2 projects</span>
         </div>
 
         <!-- Projet Unity 01 -->
         <div class="project-card">
-          <div class="card-number">01</div>
           <iframe
             class="card-video"
             src="https://www.youtube.com/embed/G2ia7PcqPoQ"
@@ -582,23 +594,38 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
+          <span class="tag">C#</span>
+          <br><br>
           <p class="card-genre">First Person Pursuit Game</p>
           <h3 class="card-title">Double Trouble</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div class="tags">
-            <span class="tag">Unity</span>
+          <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; border-left: 2px solid rgba(232,255,71,0.3);">
+            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+            <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Networking</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Physics</li>
+            </ul>
           </div>
         </div>
 
         <!-- Projet Unity 02 -->
         <div class="project-card">
-          <div class="card-number">02</div>
           <div class="card-emoji">🌌</div>
+          <span class="tag">C#</span>
+          <br><br>
           <p class="card-genre">Narrative Level</p>
           <h3 class="card-title">Dungeon Dream</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div class="tags">
-            <span class="tag">Unity</span>
+          <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; border-left: 2px solid rgba(232,255,71,0.3);">
+            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+            <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Narrative Design</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Story Scripting</li>
+            </ul>
           </div>
         </div>
 
