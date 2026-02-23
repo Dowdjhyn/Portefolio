@@ -11,6 +11,7 @@
       --surface: #12121a;
       --accent: #e8ff47;
       --accent2: #ff4757;
+      --timeline-alt: #ff6b8a;
       --text: #e8e8f0;
       --muted: #666680;
       --border: rgba(232,255,71,0.15);
@@ -73,9 +74,11 @@
     /* ── HERO ── */
     #about {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 4rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      gap: 0.5rem;
+      padding: 3.5rem 4rem 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -109,6 +112,7 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       padding: 0.4rem 1rem;
+      margin-top: 2.6rem;
       margin-bottom: 2rem;
       animation: fadeUp 0.6s ease both;
     }
@@ -149,6 +153,268 @@
     .hero-cta:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 40px rgba(232,255,71,0.3);
+    }
+
+    /* ── TIMELINE JOURNEY (ABOUT) ── */
+    .timeline-container {
+      width: 100%;
+      max-width: 640px;
+      justify-self: start;
+      display: grid;
+      grid-template-columns: calc(112px + 2.2rem) minmax(260px, 1fr);
+      column-gap: 2rem;
+      align-items: start;
+      margin-top: calc(4rem + 4cm);
+      margin-left: -2rem;
+      animation: fadeUp 0.6s 0.35s ease both;
+    }
+
+    .timeline-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.9rem, 6vw, 4.4rem);
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 1.6rem;
+      width: calc(112px + 2.2rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      transform: translateX(-8px);
+      text-shadow: 0 0 20px rgba(232,255,71,0.25);
+      grid-column: 1;
+      justify-self: center;
+    }
+
+    .timeline-title-star {
+      transform: translateY(-1px);
+    }
+
+    .timeline-wrapper {
+      position: relative;
+      width: 56px;
+      height: 400px;
+      padding-top: 0;
+      display: inline-block;
+      vertical-align: top;
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .timeline-wrapper + .timeline-wrapper {
+      margin-top: 0;
+      margin-left: 2.2rem;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: rgba(232,255,71,0.2);
+      border-radius: 999px;
+      transform: translateX(-50%);
+    }
+
+    .timeline-progress {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 3px;
+      height: 0;
+      background: var(--accent);
+      border-radius: 999px;
+      box-shadow: 0 0 20px rgba(232,255,71,0.5);
+      transition: height 0.25s ease;
+      transform: translateX(-50%);
+    }
+
+    .timeline-points {
+      position: relative;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      gap: 0;
+    }
+
+    .timeline-point {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(232,255,71,0.4);
+      background: var(--surface);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      z-index: 2;
+      padding: 0;
+    }
+
+    .timeline-point:hover,
+    .timeline-point:focus-visible,
+    .timeline-point.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.2);
+      box-shadow: 0 0 14px rgba(232,255,71,0.75);
+      outline: none;
+    }
+
+    .timeline-wrapper:nth-of-type(2) .timeline-line {
+      background: rgba(255,107,138,0.25);
+    }
+
+    .timeline-wrapper:nth-of-type(2) .timeline-progress {
+      background: var(--timeline-alt);
+      box-shadow: 0 0 20px rgba(255,107,138,0.55);
+    }
+
+    .timeline-wrapper:nth-of-type(2) .timeline-point {
+      border-color: rgba(255,107,138,0.45);
+    }
+
+    .timeline-wrapper:nth-of-type(2) .timeline-point:hover,
+    .timeline-wrapper:nth-of-type(2) .timeline-point:focus-visible,
+    .timeline-wrapper:nth-of-type(2) .timeline-point.active {
+      background: var(--timeline-alt);
+      border-color: var(--timeline-alt);
+      box-shadow: 0 0 14px rgba(255,107,138,0.75);
+    }
+
+    .timeline-content-area {
+      min-height: 0;
+      margin-top: 0;
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+      justify-self: start;
+      margin-left: calc(2.2rem + 1cm);
+      width: min(27ch, 100%);
+      max-width: min(27ch, 100%);
+      padding: 1.1rem 1.3rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(18,18,26,0.92), rgba(30,20,40,0.92));
+      box-shadow: 0 0 16px rgba(0,0,0,0.35), inset 0 0 18px rgba(255,255,255,0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+    }
+
+    .timeline-container.has-selection .timeline-content-shared {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(232,255,71,0.22), inset 0 0 24px rgba(232,255,71,0.05);
+    }
+
+    .timeline-container.has-selection .timeline-content-area {
+      margin-top: -1cm;
+    }
+
+    .timeline-content-rose {
+      display: none;
+      grid-row: 2;
+      margin-top: 0;
+      margin-left: calc(3rem + 2cm);
+      transform: translateX(100%);
+      border-color: var(--timeline-alt);
+      box-shadow: 0 0 30px rgba(255,107,138,0.22), inset 0 0 24px rgba(255,107,138,0.05);
+    }
+
+    .timeline-container.has-selection .timeline-content-rose {
+      display: flex;
+    }
+
+    .timeline-content-shared {
+      margin-top: 1.6rem;
+    }
+
+    .timeline-content-hint {
+      color: var(--muted);
+      font-size: 0.98rem;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .timeline-content-rose ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .timeline-content-rose li {
+      color: var(--muted);
+    }
+
+    .timeline-container.has-selection .timeline-content-hint {
+      display: none;
+    }
+
+    .timeline-data-link {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0;
+      transition: none;
+    }
+
+    .timeline-data-link.active {
+      opacity: 1;
+    }
+
+    .timeline-data-link-glow {
+      fill: none;
+      stroke-width: 8;
+      opacity: 0.14;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .timeline-data-link-main {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 8 10;
+      animation: dataFlow 1.1s linear infinite;
+    }
+
+    @keyframes dataFlow {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -36; }
+    }
+
+    .timeline-content {
+      display: none;
+      animation: fadeUp 0.25s ease;
+      width: 100%;
+    }
+
+    .timeline-content.active {
+      display: block;
+    }
+
+    .timeline-year {
+      font-family: 'Courier New', monospace;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1rem;
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     /* ── SECTION COMMUNE ── */
@@ -460,7 +726,42 @@
     @media (max-width: 768px) {
       nav { padding: 1.5rem 2rem; }
       .nav-links { display: none; }
-      #about, section { padding: 5rem 2rem; }
+      #about {
+        grid-template-columns: 1fr;
+        padding: 3.5rem 2rem 4rem;
+      }
+      section { padding: 5rem 2rem; }
+      .timeline-container {
+        margin-top: calc(4.2rem + 4cm);
+        justify-self: start;
+        margin-left: 0;
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        column-gap: 0;
+      }
+      .timeline-wrapper {
+        height: 330px;
+      }
+      .timeline-wrapper + .timeline-wrapper {
+        margin-left: 1.6rem;
+      }
+      .timeline-title {
+        width: calc(112px + 1.6rem);
+        grid-column: 1;
+      }
+      .timeline-content-area {
+        grid-column: 1;
+        grid-row: 3;
+        margin-top: 1.8rem;
+        margin-left: 0;
+        max-width: 100%;
+      }
+      .timeline-content-rose {
+        grid-row: 4;
+        margin-top: 1rem;
+        margin-left: 0;
+        transform: none;
+      }
       .featured-card { grid-template-columns: 1fr; gap: 2rem; }
       .engines-split {
         grid-template-columns: 1fr;
@@ -528,6 +829,7 @@
       background: linear-gradient(90deg, rgba(232,255,71,0.05), transparent);
       position: sticky;
       top: 0;
+      z-index: 10;
     }
 
     .legal-header h2 {
@@ -622,13 +924,105 @@
       <div class="hero-tag">✦ Game Designer / Game Developper </div>
       <h1 class="hero-title"><br><span>Andrew</span><br>Malaure</h1>
       <p class="hero-sub">
-        Je conçois des expériences de jeu mémorables — du game feel à la boucle de gameplay,
-        en passant par le level design et la narration interactive.
-        Passionné par ce qui rend un jeu <em>inoubliable</em>.
+          to do :
       </p>
       <a href="#featured" class="hero-cta">Phare Project →</a>
       <a href="#projects" class="hero-cta">All my Projects→</a>
     </div>
+
+    <div class="timeline-container reveal">
+      <h2 class="timeline-title"><span class="timeline-title-star">✦ </span><span>Journey</span></h2>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress"></div>
+
+        <div class="timeline-points">
+          <button class="timeline-point" data-index="0" aria-label="Journey shared point 2020"></button>
+          <button class="timeline-point" data-index="1" aria-label="Journey shared point 2022"></button>
+          <button class="timeline-point" data-index="2" aria-label="Journey shared point 2024"></button>
+          <button class="timeline-point" data-index="3" aria-label="Journey shared point 2026"></button>
+          <button class="timeline-point" data-index="4" aria-label="Journey shared point 2027"></button>
+        </div>
+      </div>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress"></div>
+
+        <div class="timeline-points">
+          <button class="timeline-point" data-index="0" aria-label="Journey point 2020"></button>
+          <button class="timeline-point" data-index="1" aria-label="Journey point 2022"></button>
+          <button class="timeline-point" data-index="2" aria-label="Journey point 2024"></button>
+          <button class="timeline-point" data-index="3" aria-label="Journey point 2026"></button>
+          <button class="timeline-point" data-index="4" aria-label="Journey point 2027"></button>
+        </div>
+      </div>
+
+      <div class="timeline-content-area timeline-content-shared">
+        <p class="timeline-content-hint">Hover a timeline point to view details.</p>
+        <div class="timeline-content" data-index="0">
+          <p class="timeline-year">Before 2023</p>
+          <p class="timeline-desc">In 2016, I discovered Overwatch, which became my first true passion in video games. I had played games before, but this time, the connection was much deeper. Since then, I've played many games across many genres, and each one fascinated me with its universe. Over time, the idea of creating my own worlds started to grow, and Brassart School gave me the opportunity to begin that journey.</p>
+        </div>
+        <div class="timeline-content" data-index="1">
+          <p class="timeline-year">2023</p>
+          <p class="timeline-desc">Création de projets étudiants orientés level design et narration interactive.</p>
+        </div>
+        <div class="timeline-content" data-index="2">
+          <p class="timeline-year">2024</p>
+          <p class="timeline-desc">Production de jeux sous Unreal et Unity avec un focus sur le game feel et les systèmes.</p>
+        </div>
+        <div class="timeline-content" data-index="3">
+          <p class="timeline-year">2025</p>
+          <p class="timeline-desc">Consolidation du portfolio et spécialisation sur des expériences immersives orientées joueur.</p>
+        </div>
+        <div class="timeline-content" data-index="4">
+          <p class="timeline-year">2026</p>
+          <p class="timeline-desc">Approfondissement de l’expertise en game systems et direction créative sur des projets ambitieux.</p>
+        </div>
+      </div>
+
+      <div class="timeline-content-area timeline-content-rose timeline-content-shared-pink">
+        <div class="timeline-content" data-index="0">
+          <p class="timeline-year">My major discoveries :</p>
+          <p class="timeline-desc">
+            <ul>
+              <li>GTA V</li>
+              <li>Red Dead Redemption 2</li>
+              <li>Sekiro</li>
+              <li>Monster Hunter World</li>
+              <li>For Honor</li>
+              <li>Little Nightmares</li>
+              <li>Overwatch</li>
+              <li>Resident Evil 7/8</li>
+              <li>Elden Ring</li>
+              <li>Battlefield 1/5</li>
+              <li>Doom Eternal</li>
+              <li>Dark Souls 3</li>
+              <li>Portal 1/2</li>
+            </ul>
+          </p>
+        </div>
+        <div class="timeline-content" data-index="1">
+          <p class="timeline-year">2023</p>
+          <p class="timeline-desc">Construction d'univers et de moodboards pour poser une identité forte sur les prototypes.</p>
+        </div>
+        <div class="timeline-content" data-index="2">
+          <p class="timeline-year">2024</p>
+          <p class="timeline-desc">Renforcement du polish visuel, VFX et lisibilité des scènes pour guider le joueur.</p>
+        </div>
+        <div class="timeline-content" data-index="3">
+          <p class="timeline-year">2025</p>
+          <p class="timeline-desc">Affinement de la cohérence artistique entre gameplay, narration et rythme des niveaux.</p>
+        </div>
+        <div class="timeline-content" data-index="4">
+          <p class="timeline-year">2026</p>
+          <p class="timeline-desc">Direction créative plus assumée avec une approche immersive centrée sur l'émotion joueur.</p>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- PROJET PHARE -->
@@ -682,7 +1076,7 @@
           <h3 class="card-title">Unjudged</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
           <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
-            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> C++</li>
@@ -699,8 +1093,8 @@
           <p class="card-genre">Level Design</p>
           <h3 class="card-title">Fallout World</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px rgba(0,0,0,0.5)">
-            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+<div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
+            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Level Design</li>
@@ -734,8 +1128,8 @@
           <p class="card-genre">First Person Pursuit Game</p>
           <h3 class="card-title">Double Trouble</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px rgba(0,0,0,0.5)">
-            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
+            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
@@ -753,8 +1147,8 @@
           <p class="card-genre">Narrative Level</p>
           <h3 class="card-title">Dungeon Dream</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px rgba(0,0,0,0.5)">
-            <p style="margin-bottom: 0.5rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills</p>
+          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
+            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
@@ -862,6 +1256,178 @@
     };
 
     closeBtn.addEventListener('click', closeLegalModal);
+
+    // Timelines interactives (description commune)
+    document.querySelectorAll('.timeline-container').forEach((timelineContainer) => {
+      const timelineWrappers = timelineContainer.querySelectorAll('.timeline-wrapper');
+      const sharedContents = timelineContainer.querySelectorAll('.timeline-content-shared .timeline-content');
+      const pinkContents = timelineContainer.querySelectorAll('.timeline-content-shared-pink .timeline-content');
+      const yellowContentArea = timelineContainer.querySelector('.timeline-content-shared');
+      const pinkContentArea = timelineContainer.querySelector('.timeline-content-shared-pink');
+
+      if (!timelineWrappers.length || !sharedContents.length || !yellowContentArea || !pinkContentArea) return;
+
+      const connectorSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      connectorSvg.classList.add('timeline-data-link');
+      connectorSvg.setAttribute('preserveAspectRatio', 'none');
+      connectorSvg.setAttribute('aria-hidden', 'true');
+
+      const connectorLayers = Array.from(timelineWrappers).map(() => {
+        const glowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        glowPath.classList.add('timeline-data-link-glow');
+
+        const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        mainPath.classList.add('timeline-data-link-main');
+
+        connectorSvg.appendChild(glowPath);
+        connectorSvg.appendChild(mainPath);
+
+        return { glowPath, mainPath };
+      });
+
+      const bridgeGlowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      bridgeGlowPath.classList.add('timeline-data-link-glow');
+
+      const bridgeMainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      bridgeMainPath.classList.add('timeline-data-link-main');
+
+      connectorSvg.appendChild(bridgeGlowPath);
+      connectorSvg.appendChild(bridgeMainPath);
+
+      document.body.appendChild(connectorSvg);
+
+      let activeIndex = null;
+
+      const syncConnectorViewport = () => {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        connectorSvg.setAttribute('viewBox', `0 0 ${viewportWidth} ${viewportHeight}`);
+      };
+
+      syncConnectorViewport();
+
+      const updateConnector = (index) => {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+          connectorSvg.classList.remove('active');
+          return;
+        }
+
+        const yellowRect = yellowContentArea.getBoundingClientRect();
+        const pinkRect = pinkContentArea.getBoundingClientRect();
+
+        timelineWrappers.forEach((wrapper, wrapperIndex) => {
+          const sourcePoint = wrapper.querySelectorAll('.timeline-point')[index];
+          const connectorLayer = connectorLayers[wrapperIndex];
+          if (!sourcePoint || !connectorLayer) return;
+
+          const targetRect = yellowRect;
+
+          const sourceRect = sourcePoint.getBoundingClientRect();
+
+          const startX = sourceRect.right;
+          const startY = sourceRect.top + sourceRect.height / 2;
+          const endX = targetRect.left;
+          const endY = targetRect.top + targetRect.height / 2;
+          const laneOffset = (wrapperIndex - (timelineWrappers.length - 1) / 2) * 44;
+          const routedY = endY + laneOffset;
+
+          const horizontalSpan = Math.max(endX - startX, 40);
+          const bendA = startX + Math.max(28, horizontalSpan * 0.35);
+          const bendB = endX - Math.max(24, horizontalSpan * 0.2);
+
+          const pathData = `M ${startX} ${startY} L ${bendA} ${startY} L ${bendA} ${routedY} L ${bendB} ${routedY} L ${endX} ${routedY}`;
+          const activeColor = getComputedStyle(sourcePoint).borderColor || 'rgb(232,255,71)';
+
+          connectorLayer.glowPath.setAttribute('d', pathData);
+          connectorLayer.mainPath.setAttribute('d', pathData);
+          connectorLayer.glowPath.style.stroke = activeColor;
+          connectorLayer.mainPath.style.stroke = activeColor;
+        });
+
+        const bridgeStartX = yellowRect.right;
+        const bridgeStartY = yellowRect.top + yellowRect.height / 2;
+        const bridgeEndX = pinkRect.left;
+        const bridgeEndY = pinkRect.top + pinkRect.height / 2;
+        const bridgeMidX = bridgeStartX + Math.max(26, (bridgeEndX - bridgeStartX) * 0.5);
+        const bridgePathData = `M ${bridgeStartX} ${bridgeStartY} L ${bridgeMidX} ${bridgeStartY} L ${bridgeMidX} ${bridgeEndY} L ${bridgeEndX} ${bridgeEndY}`;
+        const pinkLinkColor = getComputedStyle(document.documentElement).getPropertyValue('--timeline-alt').trim() || 'rgb(255,107,138)';
+
+        bridgeGlowPath.setAttribute('d', bridgePathData);
+        bridgeMainPath.setAttribute('d', bridgePathData);
+        bridgeGlowPath.style.stroke = pinkLinkColor;
+        bridgeMainPath.style.stroke = pinkLinkColor;
+
+        connectorSvg.classList.add('active');
+      };
+
+      const clearConnector = () => {
+        connectorSvg.classList.remove('active');
+        connectorLayers.forEach((layer) => {
+          layer.glowPath.setAttribute('d', '');
+          layer.mainPath.setAttribute('d', '');
+        });
+        bridgeGlowPath.setAttribute('d', '');
+        bridgeMainPath.setAttribute('d', '');
+      };
+
+      const firstWrapperPointsCount = timelineWrappers[0].querySelectorAll('.timeline-point').length;
+      const totalPoints = Math.max(firstWrapperPointsCount, sharedContents.length);
+      const progressStops = Array.from({ length: totalPoints }, (_, index) => {
+        if (totalPoints <= 1) return '0%';
+        return `${(index / (totalPoints - 1)) * 100}%`;
+      });
+
+      const activateTimelinePoint = (index) => {
+        if (activeIndex === index) return;
+
+        activeIndex = index;
+        timelineContainer.classList.add('has-selection');
+        timelineWrappers.forEach((wrapper) => {
+          const points = wrapper.querySelectorAll('.timeline-point');
+          const timelineProgress = wrapper.querySelector('.timeline-progress');
+
+          points.forEach((point, pointIndex) => {
+            point.classList.toggle('active', pointIndex === index);
+          });
+
+          if (timelineProgress) {
+            timelineProgress.style.height = progressStops[index] || '0%';
+          }
+        });
+
+        sharedContents.forEach((content, contentIndex) => {
+          content.classList.toggle('active', contentIndex === index);
+        });
+
+        pinkContents.forEach((content, contentIndex) => {
+          content.classList.toggle('active', contentIndex === index);
+        });
+
+        updateConnector(index);
+      };
+
+      timelineWrappers.forEach((wrapper) => {
+        const points = wrapper.querySelectorAll('.timeline-point');
+
+        points.forEach((point, index) => {
+          point.addEventListener('mouseenter', () => activateTimelinePoint(index));
+          point.addEventListener('focus', () => activateTimelinePoint(index));
+        });
+      });
+
+      timelineContainer.addEventListener('mouseleave', () => {
+        if (activeIndex !== null) return;
+      });
+
+      window.addEventListener('resize', () => {
+        syncConnectorViewport();
+        if (activeIndex !== null) updateConnector(activeIndex);
+      });
+
+      window.addEventListener('scroll', () => {
+        if (activeIndex !== null) updateConnector(activeIndex);
+      }, { passive: true });
+    });
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
