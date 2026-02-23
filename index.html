@@ -350,6 +350,11 @@
       color: var(--muted);
     }
 
+    .timeline-content-rose li::before {
+      content: '- ';
+      color: var(--muted);
+    }
+
     .timeline-container.has-selection .timeline-content-hint {
       display: none;
     }
@@ -406,7 +411,21 @@
       font-size: 1.6rem;
       letter-spacing: 1px;
       color: var(--accent);
-      margin-bottom: 0.5rem;
+      width: calc(100% + 2.6rem);
+      margin-left: -1.3rem;
+      margin-right: -1.3rem;
+      padding: 0.25rem 1.3rem 0.55rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--accent);
+      background: transparent;
+      text-shadow: none;
+    }
+
+    .timeline-content-rose .timeline-year {
+      color: var(--timeline-alt);
+      border-bottom-color: var(--timeline-alt);
+      background: transparent;
+      text-shadow: none;
     }
 
     .timeline-desc {
@@ -962,24 +981,24 @@
       <div class="timeline-content-area timeline-content-shared">
         <p class="timeline-content-hint">Hover a timeline point to view details.</p>
         <div class="timeline-content" data-index="0">
-          <p class="timeline-year">Before 2023</p>
+          <p class="timeline-year">Before 2023 :</p>
           <p class="timeline-desc">In 2016, I discovered Overwatch, which became my first true passion in video games. I had played games before, but this time, the connection was much deeper. Since then, I've played many games across many genres, and each one fascinated me with its universe. Over time, the idea of creating my own worlds started to grow, and Brassart School gave me the opportunity to begin that journey.</p>
         </div>
         <div class="timeline-content" data-index="1">
-          <p class="timeline-year">2023</p>
-          <p class="timeline-desc">Création de projets étudiants orientés level design et narration interactive.</p>
+          <p class="timeline-year">2023 :</p>
+          <p class="timeline-desc">First initiation to the Game Design and development with Unreal Engine 5.</p>
         </div>
         <div class="timeline-content" data-index="2">
-          <p class="timeline-year">2024</p>
-          <p class="timeline-desc">Production de jeux sous Unreal et Unity avec un focus sur le game feel et les systèmes.</p>
+          <p class="timeline-year">2024 :</p>
+          <p class="timeline-desc">Many group projects and collaborations with 3D artists, namely Double Trouble.</p>
         </div>
         <div class="timeline-content" data-index="3">
-          <p class="timeline-year">2025</p>
-          <p class="timeline-desc">Consolidation du portfolio et spécialisation sur des expériences immersives orientées joueur.</p>
+          <p class="timeline-year">2025 :</p>
+          <p class="timeline-desc">Longer projects and newfound passion for programming, especially in nodal !!</p>
         </div>
         <div class="timeline-content" data-index="4">
-          <p class="timeline-year">2026</p>
-          <p class="timeline-desc">Approfondissement de l’expertise en game systems et direction créative sur des projets ambitieux.</p>
+          <p class="timeline-year">2026 :</p>
+          <p class="timeline-desc">My biggest projects, Claymore and Unjudged, where I really began to specialize in programming.</p>
         </div>
       </div>
 
@@ -1005,12 +1024,12 @@
           </p>
         </div>
         <div class="timeline-content" data-index="1">
-          <p class="timeline-year">2023</p>
-          <p class="timeline-desc">Construction d'univers et de moodboards pour poser une identité forte sur les prototypes.</p>
+          <p class="timeline-year">New Discoveries :</p>
+          <p class="timeline-desc">- Hollow Knight</p>
         </div>
         <div class="timeline-content" data-index="2">
           <p class="timeline-year">2024</p>
-          <p class="timeline-desc">Renforcement du polish visuel, VFX et lisibilité des scènes pour guider le joueur.</p>
+          <p class="timeline-desc">Explore Double Trouble</p>
         </div>
         <div class="timeline-content" data-index="3">
           <p class="timeline-year">2025</p>
