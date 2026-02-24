@@ -738,7 +738,7 @@
     }
 
     .engine-name.unreal { color: #e8ff47  ; text-shadow: 0 0 20px rgba(0,128,255,0.3); }
-    .engine-name.unity  { color: #e8ff47; text-shadow: 0 0 20px rgba(232,255,71,0.3); }
+    .engine-name.unity  { color: var(--timeline-alt); text-shadow: 0 0 20px rgba(255,107,138,0.3); }
 
     .engine-count {
       margin-left: auto;
@@ -803,6 +803,59 @@
 
     .engine-column .project-card:hover::before { opacity: 1; }
 
+    .project-card.unjudged-card,
+    .project-card.framed-card {
+      background: var(--surface);
+      border-top: 2px solid var(--accent);
+      border-left: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      box-shadow: none;
+    }
+
+    .engine-column .project-card.unjudged-card:hover,
+    .engine-column .project-card.framed-card:hover {
+      border-top-color: var(--accent);
+      border-left-color: var(--accent);
+      border-right-color: var(--accent);
+      border-bottom-color: var(--accent);
+      box-shadow: none;
+    }
+
+    .engine-column.unity-col .project-card.framed-card {
+      border-top-color: var(--timeline-alt);
+      border-left-color: var(--timeline-alt);
+      border-right-color: var(--timeline-alt);
+      border-bottom-color: var(--timeline-alt);
+    }
+
+    .engine-column.unity-col .project-card.framed-card:hover {
+      border-top-color: var(--timeline-alt);
+      border-left-color: var(--timeline-alt);
+      border-right-color: var(--timeline-alt);
+      border-bottom-color: var(--timeline-alt);
+    }
+
+    .project-card .project-skills-box {
+      border: 2px solid var(--accent);
+      box-shadow: none;
+    }
+
+    .project-card .project-skills-box ul {
+      margin-left: 0.4rem !important;
+      padding-left: 0;
+    }
+
+    .project-card .project-skills-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+
+    .engine-column.unity-col .project-card .project-skills-box {
+      border-color: var(--timeline-alt);
+    }
+
     .card-emoji { font-size: 2rem; margin-bottom: 1rem; }
 
     .card-genre {
@@ -842,6 +895,15 @@
       width: 100%;
       aspect-ratio: 16/9;
       border: none;
+      margin-bottom: 1rem;
+      border-radius: 2px;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
       margin-bottom: 1rem;
       border-radius: 2px;
     }
@@ -1250,14 +1312,13 @@
         </div>
 
         <!-- Projet UE 01 -->
-        <div class="project-card" data-href="unjudged.html">
-          <div class="card-number">01</div>
-          <div class="card-emoji">🗺️</div>
+        <div class="project-card unjudged-card" data-href="unjudged.html">
+          <img class="card-image" src="images/Unjudged_Menu.png" alt="Unjudged">
           <p class="card-genre">Top View Beat Them'Up</p>
           <h3 class="card-title">Unjudged</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
-            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
+          <div class="unjudged-skills-box project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
+            <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> C++</li>
@@ -1268,14 +1329,13 @@
         </div>
 
         <!-- Projet UE 02 -->
-        <div class="project-card" data-href="fallout-world.html">
-          <div class="card-number">02</div>
-          <div class="card-emoji">🤖</div>
+        <div class="project-card framed-card" data-href="fallout-world.html">
+          <img class="card-image" src="images/Fallout_Level.png" alt="Fallout World">
           <p class="card-genre">Level Design</p>
           <h3 class="card-title">Fallout World</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-<div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
-            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
+<div class="project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
+            <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Level Design</li>
@@ -1295,7 +1355,7 @@
         </div>
 
         <!-- Projet Unity 01 -->
-        <div class="project-card" data-href="double-trouble.html">
+        <div class="project-card framed-card" data-href="double-trouble.html">
           <iframe
             class="card-video"
             src="https://www.youtube.com/embed/G2ia7PcqPoQ"
@@ -1309,8 +1369,8 @@
           <p class="card-genre">First Person Pursuit Game</p>
           <h3 class="card-title">Double Trouble</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
-            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
+          <div class="project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
+            <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
@@ -1321,15 +1381,15 @@
         </div>
 
         <!-- Projet Unity 02 -->
-        <div class="project-card" data-href="dungeon-dream.html">
+        <div class="project-card framed-card" data-href="dungeon-dream.html">
           <div class="card-emoji">🌌</div>
           <span class="tag">C#</span>
           <br><br>
           <p class="card-genre">Narrative Level</p>
           <h3 class="card-title">Dungeon Dream</h3>
           <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
-          <div style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px; box-shadow: inset 20px 20px 0px #08080c">
-            <p style="margin-bottom: 0.5rem; margin-left: 1rem; margin-top: 1rem; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
+          <div class="project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
+            <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
               <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
