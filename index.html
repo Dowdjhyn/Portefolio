@@ -252,6 +252,39 @@
       padding: 0;
     }
 
+    .timeline-point-start,
+    .timeline-point-end {
+      position: relative;
+    }
+
+    .timeline-point-start::before {
+      content: 'start';
+      position: absolute;
+      right: calc(100% + 0.8rem);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .timeline-point-end::after {
+      content: 'now';
+      position: absolute;
+      right: calc(100% + 0.8rem);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
     .timeline-point:hover,
     .timeline-point:focus-visible,
     .timeline-point.active {
@@ -436,6 +469,34 @@
       margin: 0 auto;
     }
 
+    .timeline-quick-link {
+      display: block;
+      width: fit-content;
+      margin: 0.95rem auto 0;
+      padding: 0.5rem 0.9rem;
+      border: 1px solid var(--timeline-alt);
+      border-radius: 6px;
+      color: var(--timeline-alt);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .timeline-quick-link:hover,
+    .timeline-quick-link:focus-visible {
+      background: var(--timeline-alt);
+      color: #0a0a0f;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .timeline-quick-link + .timeline-quick-link {
+      margin-top: 0.6rem;
+    }
+
     /* ── SECTION COMMUNE ── */
     section { padding: 6rem 4rem; }
 
@@ -455,32 +516,74 @@
     }
 
     /* ── PROJET PHARE ── */
-    #featured { background: var(--surface); }
+    #featured {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    #featured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232,255,71,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,255,71,0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 45%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #featured > * {
+      position: relative;
+      z-index: 1;
+    }
 
     .featured-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 2rem;
       align-items: center;
+      background: linear-gradient(135deg, rgba(18,18,26,0.94), rgba(30,20,40,0.92));
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.4rem;
+      box-shadow: 0 0 30px rgba(232,255,71,0.22), inset 0 0 24px rgba(232,255,71,0.05);
+      transition: transform 0.25s ease;
+    }
+
+    .featured-card:hover {
+      transform: translate(-2px, -2px);
     }
 
     .featured-visual {
       aspect-ratio: 16/10;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(18,18,26,0.95), rgba(30,20,40,0.95));
+      border: 2px solid var(--border);
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 8px;
+    }
+
+    .featured-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 1;
     }
 
     .featured-visual::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(255,71,87,0.3), transparent 60%),
-                  radial-gradient(circle at 80% 20%, rgba(232,255,71,0.15), transparent 50%);
+      background: radial-gradient(circle at 30% 70%, rgba(255,107,138,0.22), transparent 60%),
+          radial-gradient(circle at 80% 20%, rgba(232,255,71,0.15), transparent 50%);
     }
 
     .featured-icon {
@@ -493,15 +596,38 @@
     .featured-badge {
       position: absolute;
       top: 1rem; right: 1rem;
-      background: var(--accent2);
-      color: #fff;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--accent);
       font-size: 0.7rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 0.3rem 0.8rem;
     }
 
-    .featured-info { }
+    .featured-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .featured-info-cta {
+      grid-column: 2;
+      justify-self: start;
+      margin-top: calc(0.25rem - 3cm);
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .featured-info-box {
+      background: linear-gradient(135deg, rgba(18,18,26,0.92), rgba(30,20,40,0.92));
+      border: 2px solid rgba(255,107,138,0.78);
+      border-radius: 8px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: 0 0 14px rgba(0,0,0,0.28), 0 0 30px rgba(255,107,138,0.35), inset 0 0 18px rgba(255,107,138,0.12);
+    }
 
     .featured-genre {
       font-size: 0.75rem;
@@ -537,15 +663,20 @@
     .btn-outline {
       display: inline-block;
       border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 0.8rem 2rem;
-      font-size: 0.85rem;
+      background: var(--accent);
+      color: #0a0a0f;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.82rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
     }
-    .btn-outline:hover { background: var(--accent); color: var(--bg); }
+    .btn-outline:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(232,255,71,0.3);
+    }
 
     /* ── TOUS LES PROJETS ── */
     #projects {}
@@ -764,6 +895,10 @@
       .timeline-wrapper + .timeline-wrapper {
         margin-left: 1.6rem;
       }
+      .timeline-point-start::before,
+      .timeline-point-end::after {
+        font-size: 0.68rem;
+      }
       .timeline-title {
         width: calc(112px + 1.6rem);
         grid-column: 1;
@@ -782,6 +917,7 @@
         transform: none;
       }
       .featured-card { grid-template-columns: 1fr; gap: 2rem; }
+      .featured-info { grid-template-columns: 1fr; }
       .engines-split {
         grid-template-columns: 1fr;
       }
@@ -943,7 +1079,10 @@
       <div class="hero-tag">✦ Game Designer / Game Developper </div>
       <h1 class="hero-title"><br><span>Andrew</span><br>Malaure</h1>
       <p class="hero-sub">
-          to do :
+        Hi ! I'm 20 and I'm a French Game Designer and Developer based in France.
+        I have a strong passion for creating game mecanics, especially with Unreal Engine 5, even if I've also 
+        worked with Unity ! I'm very curious and I love learning new things, it's always a pleasure to 
+        discover new tools and techniques to improve my skills and create better games !
       </p>
       <a href="#featured" class="hero-cta">Phare Project →</a>
       <a href="#projects" class="hero-cta">All my Projects→</a>
@@ -957,11 +1096,11 @@
         <div class="timeline-progress"></div>
 
         <div class="timeline-points">
-          <button class="timeline-point" data-index="0" aria-label="Journey shared point 2020"></button>
+          <button class="timeline-point timeline-point-start" data-index="0" aria-label="Journey shared point 2020"></button>
           <button class="timeline-point" data-index="1" aria-label="Journey shared point 2022"></button>
           <button class="timeline-point" data-index="2" aria-label="Journey shared point 2024"></button>
           <button class="timeline-point" data-index="3" aria-label="Journey shared point 2026"></button>
-          <button class="timeline-point" data-index="4" aria-label="Journey shared point 2027"></button>
+          <button class="timeline-point timeline-point-end" data-index="4" aria-label="Journey shared point 2027"></button>
         </div>
       </div>
 
@@ -982,7 +1121,7 @@
         <p class="timeline-content-hint">Hover a timeline point to view details.</p>
         <div class="timeline-content" data-index="0">
           <p class="timeline-year">Before 2023 :</p>
-          <p class="timeline-desc">In 2016, I discovered Overwatch, which became my first true passion in video games. I had played games before, but this time, the connection was much deeper. Since then, I've played many games across many genres, and each one fascinated me with its universe. Over time, the idea of creating my own worlds started to grow, and Brassart School gave me the opportunity to begin that journey.</p>
+          <p class="timeline-desc">In 2016, I discovered Overwatch. I had played games before, but this time, the connection was much deeper. Since then, I've played many games across many genres, and each one fascinated me with its universe. Over time, the idea of creating my own worlds started to grow, and Brassart School gave me the opportunity to begin that journey.</p>
         </div>
         <div class="timeline-content" data-index="1">
           <p class="timeline-year">2023 :</p>
@@ -1028,16 +1167,24 @@
           <p class="timeline-desc">- Hollow Knight</p>
         </div>
         <div class="timeline-content" data-index="2">
-          <p class="timeline-year">2024</p>
-          <p class="timeline-desc">Explore Double Trouble</p>
+          <a class="timeline-quick-link" href="double-trouble.html">Explore Double Trouble</a>
         </div>
         <div class="timeline-content" data-index="3">
-          <p class="timeline-year">2025</p>
-          <p class="timeline-desc">Affinement de la cohérence artistique entre gameplay, narration et rythme des niveaux.</p>
+          <p class="timeline-year">New Discoveries :</p>
+          <p class="timeline-desc">
+            <ul>
+              <li>Lies Of P</li>
+              <li>Projec Zomboïd</li>
+              <li>Black Myth Wukong</li>
+              <li>Scorn</li>
+              <li>Resident Evil 2/3</li>
+              <li>Skate.</li>
+            </ul>
+          </p>
         </div>
         <div class="timeline-content" data-index="4">
-          <p class="timeline-year">2026</p>
-          <p class="timeline-desc">Direction créative plus assumée avec une approche immersive centrée sur l'émotion joueur.</p>
+          <a class="timeline-quick-link" href="#featured">Explore Claymore</a>
+          <a class="timeline-quick-link" href="unjudged.html">Explore Unjudged</a>
         </div>
       </div>
     </div>
@@ -1051,23 +1198,38 @@
 
     <div class="featured-card reveal">
       <div class="featured-visual">
-        <span class="featured-icon">🎮</span>
+        <img class="featured-image" src="images/Claymore_MainMenu.png" alt="Claymore">
         <div class="featured-badge">Project phare</div>
       </div>
       <div class="featured-info">
-        <p class="featured-genre">Action-RPG / Souls Like</p>
-        <h3 class="featured-title">Claymore</h3>
-        <p class="featured-desc">
-          Décris ici ton projet phare en 2–3 phrases. Qu'est-ce qui le rend unique ?
-          Quel problème de game design as-tu résolu ? Quelle expérience voulais-tu créer pour le joueur ?
-        </p>
-        <div class="tags">
-          <span class="tag">Unreal Engine 5</span>
-          <span class="tag">Nodal Code</span>
-          <span class="tag">Complete Animation System</span>
-          <span class="tag">Behavior Tree</span>
+        <div class="featured-info-box">
+          <p class="featured-genre">Action-RPG / Souls Like</p>
+          <h3 class="featured-title">Claymore</h3>
+          <p class="featured-desc">
+            This is my most ambitious project to date, and it's still a work in progress ! Since I discovered Dark Souls 3,
+            I've been dreaming of creating my own Souls Like game. I admit, it's not the most original idea, but it's a huge challenge that
+            allows me to learn a lot and push my skills to the limit, always with passion ! 
+          </p>
+          <div class="tags">
+            <span class="tag">Unreal Engine 5</span>
+            <span class="tag">Nodal Code</span>
+            <span class="tag">Complete Animation System</span>
+            <span class="tag">Behavior Tree</span>
+          </div>
         </div>
-        <a href="#" class="btn-outline">Explore</a>
+        <div class="featured-info-box">
+          <p class="featured-genre">Technical Skills Developped:</p>
+          <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I developped an entire Behavior Tree for each enemy type.</li>
+            <br>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I implemented a complete Animation System to handle all character and enemy movements.</li>
+            <br>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I made a Entire Combat System with combo, parry, and dodge mechanics.</li>
+            <br>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I'm still working on it ! Come back later for more updates.</li>
+          </ul>
+        </div>
+        <a href="#" class="btn-outline featured-info-cta">Explore</a>
       </div>
     </div>
   </section>
