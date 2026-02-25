@@ -74,6 +74,7 @@
     /* ── HERO ── */
     #about {
       min-height: 100vh;
+      min-height: 100dvh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: start;
@@ -95,7 +96,8 @@
 
     .hero-glow {
       position: absolute;
-      width: 600px; height: 600px;
+      width: min(600px, 78vw);
+      height: min(600px, 78vw);
       background: radial-gradient(circle, rgba(232,255,71,0.08) 0%, transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -153,6 +155,152 @@
     .hero-cta:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 40px rgba(232,255,71,0.3);
+    }
+
+    .visit-card {
+      margin-top: calc(0.8rem + 2cm);
+      margin-bottom: 1.4rem;
+      width: min(460px, 100%);
+      perspective: 1200px;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .visit-card-inner {
+      position: relative;
+      width: 100%;
+      min-height: 0;
+      display: grid;
+      transform-style: preserve-3d;
+      transition: transform 0.65s ease;
+    }
+
+    .visit-card:hover .visit-card-inner,
+    .visit-card:focus-visible .visit-card-inner,
+    .visit-card:focus-within .visit-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .visit-card-face {
+      position: relative;
+      grid-area: 1 / 1;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(18,18,26,0.96), rgba(30,20,40,0.94));
+      box-shadow: 0 0 18px rgba(232,255,71,0.18), inset 0 0 22px rgba(232,255,71,0.06);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      padding: 1rem 1.1rem;
+      display: grid;
+      gap: 0.65rem;
+      align-content: center;
+    }
+
+    .visit-card-face h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .visit-card-front h3 {
+      font-size: clamp(2.9rem, 6vw, 4.4rem);
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(232,255,71,0.25);
+      line-height: 0.9;
+    }
+
+    .visit-card-front h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.3rem, 5.2vw, 3.7rem);
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(232,255,71,0.25);
+      line-height: 1;
+      color: var(--text);
+      margin: -0.2rem 0 0;
+    }
+
+    .visit-card-front {
+      text-align: left;
+      align-content: center;
+      justify-items: start;
+    }
+
+    .visit-card-firstname {
+      color: var(--accent);
+    }
+
+    .visit-card-face p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .visit-card-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .visit-card-meta-row p {
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .visit-card-mail-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: nowrap;
+    }
+
+    .visit-card-mail-row p,
+    .visit-card-mail-row .copy-mail-btn {
+      white-space: nowrap;
+    }
+
+    .visit-card-mail-link {
+      color: var(--timeline-alt);
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 0.9rem;
+    }
+
+    .visit-card-mail-link:hover,
+    .visit-card-mail-link:focus-visible {
+      color: var(--accent);
+      outline: none;
+      text-decoration: underline;
+    }
+
+    .visit-card-hint {
+      font-size: 0.72rem;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.85;
+      margin-top: 0.2rem;
+    }
+
+    .visit-card-front .visit-card-hint:first-of-type {
+      color: var(--timeline-alt);
+    }
+
+    .visit-card-front .visit-card-hint:last-of-type {
+      margin-top: 0.55rem;
+    }
+
+    .visit-card-back {
+      transform: rotateY(180deg);
+      border-color: var(--timeline-alt);
+      box-shadow: 0 0 18px rgba(255,107,138,0.2), inset 0 0 22px rgba(255,107,138,0.08);
+    }
+
+    .visit-card-back h3,
+    .visit-card-back .visit-card-hint {
+      color: var(--timeline-alt);
     }
 
     /* ── TIMELINE JOURNEY (ABOUT) ── */
@@ -416,6 +564,38 @@
     }
 
     .timeline-data-link-main {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 8 10;
+      animation: dataFlow 1.1s linear infinite;
+    }
+
+    .projects-data-link {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 35;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .projects-data-link.active {
+      opacity: 1;
+    }
+
+    .projects-data-link-glow {
+      fill: none;
+      stroke-width: 8;
+      opacity: 0.14;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .projects-data-link-main {
       fill: none;
       stroke-width: 2.2;
       stroke-linecap: round;
@@ -737,7 +917,7 @@
       letter-spacing: 3px;
     }
 
-    .engine-name.unreal { color: #e8ff47  ; text-shadow: 0 0 20px rgba(0,128,255,0.3); }
+    .engine-name.unreal { color: var(--accent); text-shadow: 0 0 20px rgba(232,255,71,0.3); }
     .engine-name.unity  { color: var(--timeline-alt); text-shadow: 0 0 20px rgba(255,107,138,0.3); }
 
     .engine-count {
@@ -866,6 +1046,10 @@
       margin-bottom: 0.5rem;
     }
 
+    .engine-column.unreal-col .card-genre {
+      color: var(--timeline-alt);
+    }
+
     .card-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.5rem;
@@ -921,6 +1105,44 @@
 
     footer a { color: var(--accent); text-decoration: none; }
 
+    .copy-mail-btn {
+      margin-left: 0.55rem;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .copy-mail-btn:hover,
+    .copy-mail-btn:focus-visible {
+      background: var(--accent);
+      color: #0a0a0f;
+      outline: none;
+    }
+
+    .visit-card-back .copy-mail-btn {
+      border-color: var(--timeline-alt);
+      color: var(--timeline-alt);
+    }
+
+    .visit-card-back .copy-mail-btn:hover,
+    .visit-card-back .copy-mail-btn:focus-visible {
+      background: var(--timeline-alt);
+      color: #0a0a0f;
+    }
+
+    .visit-card-copy-btn {
+      margin-left: 0;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.68rem;
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -935,6 +1157,70 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.25rem 2.25rem; }
+      section { padding: 5rem 2.25rem; }
+
+      #about {
+        grid-template-columns: 1fr;
+        padding: 3.25rem 2.25rem 3.5rem;
+      }
+
+      .hero-content { max-width: 100%; }
+
+      .timeline-container {
+        margin-top: 2.6rem;
+        margin-left: 0;
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        column-gap: 0;
+      }
+
+      .timeline-title {
+        width: calc(112px + 1.6rem);
+        grid-column: 1;
+      }
+
+      .timeline-content-area {
+        grid-column: 1;
+        grid-row: 3;
+        margin-top: 1.4rem;
+        margin-left: 0;
+        max-width: 100%;
+      }
+
+      .timeline-content-rose {
+        grid-row: 4;
+        margin-top: 0.9rem;
+        margin-left: 0;
+        transform: none;
+      }
+
+      .timeline-container.has-selection .timeline-content-area {
+        margin-top: 0;
+      }
+
+      .timeline-container.has-selection .timeline-content-shared {
+        margin-top: 1.4rem;
+      }
+
+      .timeline-container.has-selection .timeline-content-rose {
+        margin-top: 0.9rem;
+      }
+
+      .featured-info {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-info-cta {
+        grid-column: 1;
+        margin-top: 0.4rem;
+      }
+
+      .engine-column:first-child { padding-right: 2rem; }
+      .engine-column:last-child { padding-left: 2rem; }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 1.5rem 2rem; }
       .nav-links { display: none; }
@@ -944,7 +1230,7 @@
       }
       section { padding: 5rem 2rem; }
       .timeline-container {
-        margin-top: calc(4.2rem + 4cm);
+        margin-top: 2rem;
         justify-self: start;
         margin-left: 0;
         max-width: 100%;
@@ -978,6 +1264,27 @@
         margin-left: 0;
         transform: none;
       }
+
+      .timeline-container.has-selection .timeline-content-area {
+        margin-top: 0;
+      }
+
+      .timeline-container.has-selection .timeline-content-shared {
+        margin-top: 1.8rem;
+      }
+
+      .timeline-container.has-selection .timeline-content-rose {
+        margin-top: 1rem;
+      }
+
+      .featured-info-cta {
+        width: auto;
+      }
+
+      .visit-card {
+        width: 100%;
+      }
+
       .featured-card { grid-template-columns: 1fr; gap: 2rem; }
       .featured-info { grid-template-columns: 1fr; }
       .engines-split {
@@ -987,6 +1294,72 @@
       .engine-column:first-child,
       .engine-column:last-child { padding: 1rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 1rem 1rem; }
+      #about { padding: 2.8rem 1rem 3rem; }
+      section { padding: 3.8rem 1rem; }
+
+      .hero-tag { letter-spacing: 2px; }
+      .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
+      .hero-sub { line-height: 1.65; }
+
+      .hero-cta,
+      .btn-outline {
+        width: 100%;
+        text-align: center;
+      }
+
+      .visit-card {
+        perspective: none;
+      }
+
+      .visit-card-inner {
+        min-height: auto;
+        transform: none !important;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .visit-card-face {
+        position: relative;
+      }
+
+      .visit-card-back {
+        transform: none;
+      }
+
+      .timeline-title {
+        font-size: clamp(2.2rem, 11vw, 3rem);
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .timeline-wrapper { height: 290px; }
+      .timeline-wrapper + .timeline-wrapper { margin-left: 1.2rem; }
+
+      .engine-header {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .engine-count {
+        margin-left: 0;
+      }
+
+      .engine-column .project-card {
+        padding: 1.2rem;
+      }
+
+      footer {
+        padding: 2rem 1rem;
+      }
+
+      .copy-mail-btn {
+        margin-top: 0.45rem;
+        margin-left: 0;
+      }
     }
 
     /* ── MODAL MENTIONS LÉGALES ── */
@@ -1128,8 +1501,9 @@
     <div class="nav-logo">GD // Portfolio</div>
     <div class="nav-links">
       <a href="#about">About me</a>
-      <a href="#featured">Phare Project</a>
-      <a href="#projects">All my Projects</a>
+      <a href="#featured">Featured Project</a>
+      <a href="#projects">All My Projects</a>
+
     </div>
   </nav>
 
@@ -1138,16 +1512,39 @@
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
     <div class="hero-content">
-      <div class="hero-tag">✦ Game Designer / Game Developper </div>
-      <h1 class="hero-title"><br><span>Andrew</span><br>Malaure</h1>
+      <div id="visit-card" class="visit-card" tabindex="0" aria-label="Business card">
+        <div class="visit-card-inner">
+          <div class="visit-card-face visit-card-front">
+            <h1><span class="visit-card-firstname">Andrew</span> Malaure</h1>
+            <p class="visit-card-hint">Game Designer & Developer</p>
+            <p>Specialized in: Unreal Engine 5 • Blueprint • Unity • C#</p>
+            <p class="visit-card-hint">Hover to flip card</p>
+          </div>
+          <div class="visit-card-face visit-card-back">
+            <h3>Contact:</h3>
+            <div class="visit-card-meta-row">
+              <p>🏠︎ France</p>
+              <p>🗣 Languages: French / English</p>
+            </div>
+            <div class="visit-card-mail-row">
+              <a class="visit-card-mail-link" id="visit-mail-link" href="#" data-revealed="false">Email hidden (click Reveal)</a>
+              <button class="copy-mail-btn" type="button" id="reveal-visit-mail-btn">Reveal</button>
+              <button class="copy-mail-btn" type="button" data-copy-email>Copy</button>
+            </div>
+            <p>𖹭 Passion: Combat Systems & Gameplay Feel</p>
+            <p class="visit-card-hint">Available for Projects</p>
+          </div>
+        </div>
+      </div>
+
       <p class="hero-sub">
-        Hi ! I'm 20 and I'm a French Game Designer and Developer based in France.
-        I have a strong passion for creating game mecanics, especially with Unreal Engine 5, even if I've also 
-        worked with Unity ! I'm very curious and I love learning new things, it's always a pleasure to 
+        Hi! I'm 20, and I'm a French game designer and developer based in France.
+        I have a strong passion for creating game mechanics, especially with Unreal Engine 5, although I've also 
+        worked with Unity! I'm very curious, and I love learning new things. It's always a pleasure to 
         discover new tools and techniques to improve my skills and create better games !
       </p>
-      <a href="#featured" class="hero-cta">Phare Project →</a>
-      <a href="#projects" class="hero-cta">All my Projects→</a>
+      <a href="#featured" class="hero-cta">Featured Project →</a>
+      <a href="#projects" class="hero-cta">All My Projects →</a>
     </div>
 
     <div class="timeline-container reveal">
@@ -1187,7 +1584,7 @@
         </div>
         <div class="timeline-content" data-index="1">
           <p class="timeline-year">2023 :</p>
-          <p class="timeline-desc">First initiation to the Game Design and development with Unreal Engine 5.</p>
+          <p class="timeline-desc">First introduction to game design and development with Unreal Engine 5.</p>
         </div>
         <div class="timeline-content" data-index="2">
           <p class="timeline-year">2024 :</p>
@@ -1195,7 +1592,7 @@
         </div>
         <div class="timeline-content" data-index="3">
           <p class="timeline-year">2025 :</p>
-          <p class="timeline-desc">Longer projects and newfound passion for programming, especially in nodal !!</p>
+          <p class="timeline-desc">Longer projects and a newfound passion for programming, especially node-based systems!!</p>
         </div>
         <div class="timeline-content" data-index="4">
           <p class="timeline-year">2026 :</p>
@@ -1205,7 +1602,7 @@
 
       <div class="timeline-content-area timeline-content-rose timeline-content-shared-pink">
         <div class="timeline-content" data-index="0">
-          <p class="timeline-year">My major discoveries :</p>
+          <p class="timeline-year">My Major Discoveries:</p>
           <p class="timeline-desc">
             <ul>
               <li>GTA V</li>
@@ -1225,18 +1622,18 @@
           </p>
         </div>
         <div class="timeline-content" data-index="1">
-          <p class="timeline-year">New Discoveries :</p>
+          <p class="timeline-year">New Discoveries:</p>
           <p class="timeline-desc">- Hollow Knight</p>
         </div>
         <div class="timeline-content" data-index="2">
           <a class="timeline-quick-link" href="double-trouble.html">Explore Double Trouble</a>
         </div>
         <div class="timeline-content" data-index="3">
-          <p class="timeline-year">New Discoveries :</p>
+          <p class="timeline-year">New Discoveries:</p>
           <p class="timeline-desc">
             <ul>
               <li>Lies Of P</li>
-              <li>Projec Zomboïd</li>
+              <li>Project Zomboid</li>
               <li>Black Myth Wukong</li>
               <li>Scorn</li>
               <li>Resident Evil 2/3</li>
@@ -1255,21 +1652,21 @@
 
   <!-- PROJET PHARE -->
   <section id="featured">
-    <p class="section-label reveal">✦ Projet phare</p>
+    <p class="section-label reveal">✦ Featured Project</p>
     <h2 class="section-title reveal">The best of my work</h2>
 
     <div class="featured-card reveal">
       <div class="featured-visual">
         <img class="featured-image" src="images/Claymore_MainMenu.png" alt="Claymore">
-        <div class="featured-badge">Project phare</div>
+        <div class="featured-badge">Featured Project</div>
       </div>
       <div class="featured-info">
         <div class="featured-info-box">
-          <p class="featured-genre">Action-RPG / Souls Like</p>
+          <p class="featured-genre">Action RPG / Soulslike</p>
           <h3 class="featured-title">Claymore</h3>
           <p class="featured-desc">
-            This is my most ambitious project to date, and it's still a work in progress ! Since I discovered Dark Souls 3,
-            I've been dreaming of creating my own Souls Like game. I admit, it's not the most original idea, but it's a huge challenge that
+            This is my most ambitious project to date, and it's still a work in progress! Since I discovered Dark Souls 3,
+            I've been dreaming of creating my own Soulslike game. I admit it's not the most original idea, but it's a huge challenge that
             allows me to learn a lot and push my skills to the limit, always with passion ! 
           </p>
           <div class="tags">
@@ -1278,17 +1675,18 @@
             <span class="tag">Complete Animation System</span>
             <span class="tag">Behavior Tree</span>
           </div>
+          <p class="featured-genre">January - June 2026</p>
         </div>
         <div class="featured-info-box">
-          <p class="featured-genre">Technical Skills Developped:</p>
+          <p class="featured-genre">Technical Skills Developed:</p>
           <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
-            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I developped an entire Behavior Tree for each enemy type.</li>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I developed an entire behavior tree for each enemy type.</li>
             <br>
-            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I implemented a complete Animation System to handle all character and enemy movements.</li>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I implemented a complete animation system to handle all character and enemy movements.</li>
             <br>
-            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I made a Entire Combat System with combo, parry, and dodge mechanics.</li>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I built an entire combat system with combo, parry, and dodge mechanics.</li>
             <br>
-            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I'm still working on it ! Come back later for more updates.</li>
+            <li><span style="color: rgba(232,255,71,0.6);">✦</span> I'm still working on it! Come back later for more updates.</li>
           </ul>
         </div>
         <a href="#" class="btn-outline featured-info-cta">Explore</a>
@@ -1298,7 +1696,7 @@
 
   <!-- TOUS LES PROJETS -->
   <section id="projects">
-    <p class="section-label reveal">✦ All my projects</p>
+    <p class="section-label reveal">✦ All My Projects</p>
     <h2 class="section-title reveal">My creations</h2>
 
     <div class="engines-split reveal">
@@ -1314,16 +1712,31 @@
         <!-- Projet UE 01 -->
         <div class="project-card unjudged-card" data-href="unjudged.html">
           <img class="card-image" src="images/Unjudged_Menu.png" alt="Unjudged">
-          <p class="card-genre">Top View Beat Them'Up</p>
+          <span class="tag">Nodal Code</span>
+          <br><br>
+          <p class="card-genre">Top-Down Beat 'Em Up</p>
           <h3 class="card-title">Unjudged</h3>
-          <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
+          <p class="card-desc">During this final year of school, we worked in a small team on the development of a game over the course of a year, going through all the key stages of production.
+I took on the role of Lead Game Developer and Sound Designer, and also contributed to the design of menus and user interfaces.
+I was also appointed as the version control lead, as well as being responsible for managing the different game builds.</p>
+          <p class="card-genre"> September 2025 - June 2026</p>
           <div class="unjudged-skills-box project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
             <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> C++</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Blueprint</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Combat Mechanics</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I developed many enemy types with their own behavior.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I implemented an adaptable wave system that allows dynamic enemy
+              spawning, with the ability to adjust the quantity of each enemy type and the number of waves.</li> 
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I made a combo moveset for the player character, synchronised
+              with animations and visual effects.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I designed and implemented a health and damage system, with 
+              different damage types.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I created a simple interactive main menu.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I introduced environmental systems like doors and traps.</li>
             </ul>
           </div>
         </div>
@@ -1331,16 +1744,24 @@
         <!-- Projet UE 02 -->
         <div class="project-card framed-card" data-href="fallout-world.html">
           <img class="card-image" src="images/Fallout_Level.png" alt="Fallout World">
+          <span class="tag">Landscape</span>
+          <br></br>
           <p class="card-genre">Level Design</p>
           <h3 class="card-title">Fallout World</h3>
-          <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
+          <p class="card-desc">For an assignment, we divided an image of a section of the globe among all the students in the class in order to create a large open world set in the Fallout universe.
+I was assigned a predominantly natural area, in which I designed a small base inspired by an original tribe created within that same universe.</p>
+          <p class="card-genre"> November 2025</p>
 <div class="project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
             <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unreal Engine 5</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Level Design</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Environmental Design</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Lighting</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I introduced different ways to discover the level, with many paths.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I tried as much as possible to use important design concepts such as the golden path and optional paths, 
+                as well as the player’s point of view and different reward values.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I used lighting techniques to improve guidance.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I separated gameplay into 3 phases with distinct objectives — exploration, puzzle-solving, and combat.</li>
             </ul>
           </div>
         </div>
@@ -1356,26 +1777,25 @@
 
         <!-- Projet Unity 01 -->
         <div class="project-card framed-card" data-href="double-trouble.html">
-          <iframe
-            class="card-video"
-            src="https://www.youtube.com/embed/G2ia7PcqPoQ"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
+          <img class="card-image" src="images/DoubleTrouble_Main.png" alt="Double Trouble">
           <span class="tag">C#</span>
           <br><br>
           <p class="card-genre">First Person Pursuit Game</p>
           <h3 class="card-title">Double Trouble</h3>
-          <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
+          <p class="card-desc">As part of a transmedia project, we created a video game inspired by the Harry Potter saga, set directly within Hogwarts.
+During this project, I took on the role of Game Developer and was responsible for implementing the core player mechanics, while taking into account the corresponding systems for enemy behavior.</p>
+          <p class="card-genre"> November 2024 - January 2025</p>
           <div class="project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
             <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Networking</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Physics</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I developed a crafting system that allows the player to combine items to create new ones.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I implemented two spells inspired by Harry Potter, with the ability to repel
+              things or to attract them.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I created multiple interactive object effects like a disco ball or a flashbang.</li>
+              <br>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I introduced specific enemy behaviors depending on which objects the player uses.</li>
             </ul>
           </div>
         </div>
@@ -1383,18 +1803,19 @@
         <!-- Projet Unity 02 -->
         <div class="project-card framed-card" data-href="dungeon-dream.html">
           <div class="card-emoji">🌌</div>
-          <span class="tag">C#</span>
+          <p class= "card-genre">Image Incoming !</p>
+          <br>
+          <span class="tag">Prop Placement</span>
           <br><br>
           <p class="card-genre">Narrative Level</p>
           <h3 class="card-title">Dungeon Dream</h3>
-          <p class="card-desc">Une courte description de ce projet, ce qui t'a motivé et ce que tu as appris.</p>
+          <p class="card-desc">We were tasked with creating an entire level without writing a single line of code.
+The objective was to tell a story solely through the environment and visual design.</p>
+          <p class="card-genre">February 2025</p>
           <div class="project-skills-box" style="margin: 1rem auto 0; width: calc(100% - 1rem); padding: 0.75rem 1rem; background: var(--bg); border-radius: 8px;">
             <p style="margin: 0 0 0.4rem; min-height: 2rem; display: flex; align-items: center; color: var(--text); font-weight: 500; font-size: 0.95rem;">Technical Skills :</p>
             <ul style="margin: 0; margin-left: 1.5rem; color: var(--muted); font-size: 0.9rem; font-weight: 500; list-style: none;">
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Unity</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> C#</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Narrative Design</li>
-              <li><span style="color: rgba(232,255,71,0.6);">✦</span> Story Scripting</li>
+              <li><span style="color: rgba(232,255,71,0.6);">✦</span> I learned how to tell a story through environmental design.</li>
             </ul>
           </div>
         </div>
@@ -1415,7 +1836,7 @@
         <div class="legal-section">
           <h3>INFORMATIONS GÉNÉRALES</h3>
           <p><strong>Nom :</strong> Andrew Malaure</p>
-          <p><strong>Adresse email :</strong> andrew.enguerrand@gmail.com</p>
+          <p><strong>Adresse email :</strong> Disponible via la section contact en bas de page.</p>
           <p><strong>Type de site :</strong> Portfolio personnel – Game Designer & Developer</p>
         </div>
 
@@ -1441,7 +1862,7 @@
 
         <div class="legal-section">
           <h3>CONTACT & DEMANDES LÉGALES</h3>
-          <p>Pour toute question, demande d'accès RGPD ou réclamation, contactez : <strong>andrew.enguerrand@gmail.com</strong></p>
+          <p>Pour toute question, demande d'accès RGPD ou réclamation, utilisez la section contact en bas de page.</p>
         </div>
       </div>
     </div>
@@ -1452,9 +1873,11 @@
       <span>© 2026 Andrew Malaure :</span> |
       <a href="#" id="legal-link" style="text-decoration:underline; cursor:pointer;">Mentions légales</a>
     </div>
-    <div>
+    <div id="footer-contact">
       Contact :
-      <a href="mailto:andrew.enguerrand@gmail.com">andrew.enguerrand@gmail.com</a>
+      <a id="footer-mail-link" href="#" data-revealed="false">Email hidden (click Reveal)</a>
+      <button class="copy-mail-btn" type="button" id="reveal-mail-btn">Reveal</button>
+      <button class="copy-mail-btn" type="button" data-copy-email>Copy</button>
     </div>
   </footer>
 
@@ -1481,6 +1904,55 @@
     const legalModal = document.getElementById('legal-modal');
     const legalLink = document.getElementById('legal-link');
     const closeBtn = document.getElementById('close-legal');
+    const visitCard = document.getElementById('visit-card');
+    const visitMailLink = document.getElementById('visit-mail-link');
+    const revealVisitMailBtn = document.getElementById('reveal-visit-mail-btn');
+    const footerMailLink = document.getElementById('footer-mail-link');
+    const revealMailBtn = document.getElementById('reveal-mail-btn');
+    const copyMailButtons = document.querySelectorAll('[data-copy-email]');
+    const at = String.fromCharCode(64);
+    const dot = String.fromCharCode(46);
+    const emailLocal = 'andrewmalaure.pro';
+    const emailDomain = 'gmail';
+    const emailTld = 'com';
+    const email = `${emailLocal}${at}${emailDomain}${dot}${emailTld}`;
+
+    const bindRevealEmail = (mailLink, revealButton) => {
+      if (!mailLink) return;
+
+      const revealEmail = () => {
+        mailLink.textContent = email;
+        mailLink.setAttribute('href', `mailto:${email}`);
+        mailLink.setAttribute('data-revealed', 'true');
+
+        if (revealButton) {
+          revealButton.textContent = 'Revealed';
+          revealButton.disabled = true;
+        }
+      };
+
+      if (revealButton) {
+        revealButton.addEventListener('click', revealEmail);
+      }
+
+      mailLink.addEventListener('click', (event) => {
+        if (mailLink.getAttribute('data-revealed') === 'true') return;
+        event.preventDefault();
+        revealEmail();
+      });
+    };
+
+    bindRevealEmail(visitMailLink, revealVisitMailBtn);
+    bindRevealEmail(footerMailLink, revealMailBtn);
+
+    if (visitCard) {
+      visitCard.addEventListener('mouseleave', () => {
+        const focusedElement = document.activeElement;
+        if (focusedElement instanceof HTMLElement && visitCard.contains(focusedElement)) {
+          focusedElement.blur();
+        }
+      });
+    }
 
     legalLink.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1497,6 +1969,36 @@
     };
 
     closeBtn.addEventListener('click', closeLegalModal);
+
+    copyMailButtons.forEach((copyMailBtn) => {
+      copyMailBtn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+          } else {
+            const helper = document.createElement('textarea');
+            helper.value = email;
+            helper.setAttribute('readonly', '');
+            helper.style.position = 'fixed';
+            helper.style.left = '-9999px';
+            document.body.appendChild(helper);
+            helper.select();
+            document.execCommand('copy');
+            document.body.removeChild(helper);
+          }
+
+          copyMailBtn.textContent = 'Copied !';
+          setTimeout(() => {
+            copyMailBtn.textContent = 'Copy';
+          }, 1200);
+        } catch (error) {
+          copyMailBtn.textContent = 'Failed';
+          setTimeout(() => {
+            copyMailBtn.textContent = 'Copy';
+          }, 1200);
+        }
+      });
+    });
 
     // Timelines interactives (description commune)
     document.querySelectorAll('.timeline-container').forEach((timelineContainer) => {
@@ -1669,6 +2171,124 @@
         if (activeIndex !== null) updateConnector(activeIndex);
       }, { passive: true });
     });
+
+    // Lignes data-link entre les colonnes moteur et leurs projets
+    const setupProjectColumnConnectors = () => {
+      const projectsSection = document.getElementById('projects');
+      if (!projectsSection) return;
+
+      const engineColumns = Array.from(projectsSection.querySelectorAll('.engine-column'));
+      if (!engineColumns.length) return;
+
+      const projectsConnectorSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      projectsConnectorSvg.classList.add('projects-data-link');
+      projectsConnectorSvg.setAttribute('preserveAspectRatio', 'none');
+      projectsConnectorSvg.setAttribute('aria-hidden', 'true');
+
+      const rootStyle = getComputedStyle(document.documentElement);
+      const unrealColor = rootStyle.getPropertyValue('--accent').trim() || 'rgb(232,255,71)';
+      const unityColor = rootStyle.getPropertyValue('--timeline-alt').trim() || 'rgb(255,107,138)';
+      const enginesSplit = projectsSection.querySelector('.engines-split');
+
+      const columnLayers = engineColumns.map((column) => {
+        const header = column.querySelector('.engine-header');
+        const engineName = column.querySelector('.engine-name');
+        const cards = Array.from(column.querySelectorAll('.project-card'));
+        const color = column.classList.contains('unity-col') ? unityColor : unrealColor;
+
+        const layers = cards.map(() => {
+          const glowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          glowPath.classList.add('projects-data-link-glow');
+
+          const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          mainPath.classList.add('projects-data-link-main');
+
+          projectsConnectorSvg.appendChild(glowPath);
+          projectsConnectorSvg.appendChild(mainPath);
+
+          return { glowPath, mainPath };
+        });
+
+        return { column, header, engineName, cards, color, layers };
+      });
+
+      projectsSection.style.position = projectsSection.style.position || 'relative';
+      projectsSection.appendChild(projectsConnectorSvg);
+
+      const syncProjectsViewport = () => {
+        const sectionRect = projectsSection.getBoundingClientRect();
+        const width = Math.max(1, sectionRect.width);
+        const height = Math.max(1, sectionRect.height);
+        projectsConnectorSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      };
+
+      const drawProjectsConnectors = () => {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+          projectsConnectorSvg.classList.remove('active');
+          return;
+        }
+
+        let hasVisiblePath = false;
+        const sectionRect = projectsSection.getBoundingClientRect();
+        const splitRect = enginesSplit ? enginesSplit.getBoundingClientRect() : null;
+        const centerRailX = splitRect
+          ? (splitRect.left + splitRect.width / 2) - sectionRect.left
+          : (sectionRect.width / 2);
+
+        columnLayers.forEach(({ column, header, engineName, cards, color, layers }) => {
+          if (!header || !cards.length) return;
+
+          const sourceRect = (engineName || header).getBoundingClientRect();
+          const startX = sourceRect.left + sourceRect.width / 2 - sectionRect.left;
+          const startY = sourceRect.bottom + 4 - sectionRect.top;
+          const isUnityColumn = column.classList.contains('unity-col');
+
+          cards.forEach((card, cardIndex) => {
+            const layer = layers[cardIndex];
+            if (!layer) return;
+
+            const cardRect = card.getBoundingClientRect();
+            const endX = (isUnityColumn ? cardRect.left : cardRect.right) - sectionRect.left;
+            const endY = cardRect.top + 16 - sectionRect.top;
+            const laneOffset = (cardIndex - (cards.length - 1) / 2) * 14;
+            const centerY = endY + laneOffset;
+            const railX = centerRailX + (isUnityColumn ? 18 : -18);
+
+            const pathData = `M ${startX} ${startY} L ${railX} ${startY} L ${railX} ${centerY} L ${endX} ${centerY} L ${endX} ${endY}`;
+
+            layer.glowPath.setAttribute('d', pathData);
+            layer.mainPath.setAttribute('d', pathData);
+            layer.glowPath.style.stroke = color;
+            layer.mainPath.style.stroke = color;
+
+            hasVisiblePath = true;
+          });
+        });
+
+        projectsConnectorSvg.classList.toggle('active', hasVisiblePath);
+      };
+
+      syncProjectsViewport();
+      drawProjectsConnectors();
+
+      let projectsConnectorRaf = null;
+      const scheduleProjectsConnectorsDraw = () => {
+        if (projectsConnectorRaf !== null) return;
+        projectsConnectorRaf = window.requestAnimationFrame(() => {
+          projectsConnectorRaf = null;
+          syncProjectsViewport();
+          drawProjectsConnectors();
+        });
+      };
+
+      window.addEventListener('resize', () => {
+        scheduleProjectsConnectorsDraw();
+      });
+
+      window.addEventListener('load', scheduleProjectsConnectorsDraw);
+    };
+
+    setupProjectColumnConnectors();
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
